@@ -10,3 +10,5 @@ pub mod color;
 pub mod document;
 pub mod raster;
 pub mod history;
+pub mod fill;
+pub mod transform;
