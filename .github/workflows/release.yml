@@ -1,0 +1,123 @@
+# OpenBrush
+# Copyright © 2019 – 2026 The CipherOS Project (https://cipheros.org.in)
+# Author: Aryan Sinha <techyminati>
+# Licensed under the CipherOS License 2.0. See LICENSE for the full terms.
+#
+# Pushing a version tag (e.g. `git tag v1.0.0 && git push origin v1.0.0`) builds OpenBrush
+# for Windows, macOS and Linux and publishes the packages as a GitHub Release.
+# Package names carry no version, so README links to /releases/latest/download/ keep working.
+
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  check-version:
+    name: Check tag matches Cargo.toml
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compare versions
+        shell: bash
+        run: |
+          crate="$(grep -m1 '^version' Cargo.toml | cut -d'"' -f2)"
+          tag="${GITHUB_REF_NAME#v}"
+          if [ "$crate" != "$tag" ]; then
+            echo "::error::Tag $GITHUB_REF_NAME doesn't match Cargo.toml version $crate"
+            exit 1
+          fi
+
+  build:
+    name: Build (${{ matrix.name }})
+    needs: check-version
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: windows
+            os: windows-latest
+          - name: macos
+            os: macos-latest
+          - name: linux
+            os: ubuntu-22.04
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: dtolnay/rust-toolchain@stable
+
+      - name: Install Linux build dependencies
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y pkg-config libxkbcommon-dev libwayland-dev libx11-dev \
+            libxcursor-dev libxrandr-dev libxi-dev libgl1-mesa-dev
+
+      - uses: Swatinem/rust-cache@v2
+
+      - name: Test
+        run: cargo test --locked
+
+      - name: Package (macOS universal .dmg)
+        if: runner.os == 'macOS'
+        shell: bash
+        run: packaging/macos/package.sh "${GITHUB_REF_NAME#v}" dist
+
+      - name: Package (Linux .tar.gz)
+        if: runner.os == 'Linux'
+        shell: bash
+        run: packaging/linux/package.sh dist
+
+      - name: Package (Windows .zip)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: ./packaging/windows/package.ps1 -Out dist
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: openbrush-${{ matrix.name }}
+          path: dist/*
+          if-no-files-found: error
+
+  release:
+    name: Publish release
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: dist
+          merge-multiple: true
+
+      - name: Checksums
+        run: |
+          cd dist
+          sha256sum * > SHA256SUMS.txt
+          cat SHA256SUMS.txt
+
+      - uses: softprops/action-gh-release@v2
+        with:
+          name: OpenBrush ${{ github.ref_name }}
+          files: dist/*
+          generate_release_notes: true
+          body: |
+            ## Downloads
+
+            | Platform | File |
+            |----------|------|
+            | Windows 10/11 (x64) | `OpenBrush-windows-x86_64.zip` — unzip and run `OpenBrush.exe` |
+            | macOS 11+ (Apple Silicon & Intel) | `OpenBrush-macos-universal.dmg` — drag OpenBrush to Applications |
+            | Linux (x86_64) | `OpenBrush-linux-x86_64.tar.gz` — extract and run `./install.sh` |
+
+            The builds are not code-signed. On Windows, choose **More info → Run anyway** if SmartScreen
+            warns you. On macOS, right-click OpenBrush and choose **Open** the first time.
+
+            © 2019 – 2026 The CipherOS Project. Licensed under the CipherOS License 2.0.
