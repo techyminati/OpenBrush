@@ -498,8 +498,9 @@ impl PaintApp {
         let sel = match std::mem::replace(&mut self.gesture, Gesture::None) {
             Gesture::Marquee { start, end } => raster::rect_around(start.x, start.y, end.x, end.y, 0.0)
                 .and_then(|_| {
-                    let (x0, y0) = (start.x.min(end.x).floor(), start.y.min(end.y).floor());
-                    let (x1, y1) = (start.x.max(end.x).ceil(), start.y.max(end.y).ceil());
+                    // Corners snap to the nearest pixel grid line, so the size matches the drag.
+                    let (x0, y0) = (start.x.min(end.x).round(), start.y.min(end.y).round());
+                    let (x1, y1) = (start.x.max(end.x).round(), start.y.max(end.y).round());
                     IntRect::from_ltrb(x0 as i32, y0 as i32, x1 as i32, y1 as i32)
                 })
                 .and_then(|r| raster::clamp_to(r, w, h))
