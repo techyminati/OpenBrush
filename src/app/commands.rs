@@ -73,7 +73,7 @@ pub enum Command {
 
 /// Platform-appropriate label for a shortcut, e.g. "Ctrl+S" or "⌘S".
 pub fn shortcut_label(modifiers: Modifiers, key: &str) -> String {
-    if cfg!(target_os = "macos") {
+    if cfg!(target_os = "macos") && crate::ui::theme::has_mac_symbols() {
         let mut s = String::new();
         if modifiers.ctrl {
             s.push('⌃');
@@ -91,7 +91,9 @@ pub fn shortcut_label(modifiers: Modifiers, key: &str) -> String {
         s
     } else {
         let mut s = String::new();
-        if modifiers.command || modifiers.ctrl {
+        if cfg!(target_os = "macos") && (modifiers.command || modifiers.mac_cmd) {
+            s.push_str("Cmd+");
+        } else if modifiers.command || modifiers.ctrl {
             s.push_str("Ctrl+");
         }
         if modifiers.alt {

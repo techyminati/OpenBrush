@@ -135,6 +135,13 @@ impl Palette {
 
 pub const SEMIBOLD: &str = "semibold";
 
+/// Whether a font with the macOS keyboard symbols (⌘ ⇧ ⌥ ⌃) has been loaded.
+pub static MAC_SYMBOLS: std::sync::atomic::AtomicBool = std::sync::atomic::AtomicBool::new(false);
+
+pub fn has_mac_symbols() -> bool {
+    MAC_SYMBOLS.load(std::sync::atomic::Ordering::Relaxed)
+}
+
 pub fn body() -> FontId {
     FontId::proportional(14.0)
 }
@@ -158,7 +165,13 @@ pub fn install_fonts(ctx: &egui::Context) {
         .unwrap_or_else(|| include_bytes!("../../assets/fonts/selawksb.ttf").to_vec());
     fonts.font_data.insert("ui".into(), Arc::new(FontData::from_owned(regular)));
     fonts.font_data.insert("ui-semibold".into(), Arc::new(FontData::from_owned(bold)));
-    let fallbacks = fonts.families.get(&FontFamily::Proportional).cloned().unwrap_or_default();
+    let mut fallbacks = fonts.families.get(&FontFamily::Proportional).cloned().unwrap_or_default();
+    // macOS shortcut symbols (⌘ ⇧ ⌥ ⌃) aren't in the UI font; borrow them from the system.
+    if let Some(symbols) = system(&["/System/Library/Fonts/Apple Symbols.ttf"]) {
+        fonts.font_data.insert("symbols".into(), Arc::new(FontData::from_owned(symbols)));
+        fallbacks.push("symbols".to_owned());
+        MAC_SYMBOLS.store(true, std::sync::atomic::Ordering::Relaxed);
+    }
     let mut proportional = vec!["ui".to_owned()];
     proportional.extend(fallbacks.iter().cloned());
     fonts.families.insert(FontFamily::Proportional, proportional);
