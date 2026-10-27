@@ -7,3 +7,5 @@
 //! Nothing in here depends on the user interface.
 
 pub mod color;
+pub mod document;
+pub mod raster;
