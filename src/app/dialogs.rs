@@ -479,7 +479,8 @@ impl PaintApp {
                     let h = col as f32 / cols as f32 * 360.0;
                     let sat = 1.0 - row as f32 / rows as f32;
                     let pos = pos2(rect.min.x + rect.width() * col as f32 / cols as f32, rect.min.y + rect.height() * row as f32 / rows as f32);
-                    mesh.colored_vertex(pos, to_color32(Rgba::from_hsv(h, sat, s.value.max(0.0))));
+                    // Always shown at full brightness; brightness has its own slider below.
+                    mesh.colored_vertex(pos, to_color32(Rgba::from_hsv(h, sat, 1.0)));
                 }
             }
             for row in 0..rows {
