@@ -8,3 +8,4 @@
 pub mod icons;
 pub mod theme;
 pub mod widgets;
+pub mod app_icon;
