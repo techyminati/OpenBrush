@@ -26,3 +26,18 @@ all available under permissive licences (MIT and/or Apache-2.0, or similar):
 | cosmic-text | MIT OR Apache-2.0 |
 
 Run `cargo tree` for the full dependency list.
+
+## Icons — Fluent UI System Icons
+
+The SVG files in `assets/icons/` are taken from
+[Fluent UI System Icons](https://github.com/microsoft/fluentui-system-icons)
+(npm package `@fluentui/svg-icons` 1.1.344), Copyright (c) 2020 Microsoft Corporation,
+licensed under the MIT License (full text in `assets/icons/LICENSE`).
+They were renamed and given a white fill so the app can tint them for each theme.
+
+## Font — Selawik
+
+`assets/fonts/selawk.ttf` and `assets/fonts/selawksb.ttf` are
+[Selawik](https://github.com/microsoft/Selawik), Copyright 2015 Microsoft Corporation,
+licensed under the SIL Open Font License 1.1 (full text in `assets/fonts/OFL.txt`).
+"Selawik" is a Reserved Font Name and a trademark of Microsoft Corporation.
