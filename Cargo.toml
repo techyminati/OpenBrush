@@ -7,6 +7,7 @@
 name = "openbrush"
 version = "1.0.0"
 edition = "2024"
+rust-version = "1.95"
 description = "A cross-platform paint program modelled on Windows 11 Paint, by The CipherOS Project"
 authors = ["Aryan Sinha <techyminati>"]
 license-file = "LICENSE"
