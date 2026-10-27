@@ -5,7 +5,7 @@
 
 [package]
 name = "openbrush"
-version = "0.1.0"
+version = "1.0.0"
 edition = "2024"
 description = "A cross-platform paint program modelled on Windows 11 Paint, by The CipherOS Project"
 authors = ["Aryan Sinha <techyminati>"]
