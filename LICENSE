@@ -1,0 +1,29 @@
+CipherOS License 2.0
+
+CipherOS Software Licence Agreement
+This Software Licence Agreement (the "Agreement") is a legal agreement between you, whether an individual or a single entity, and The CipherOS Project.
+
+By installing, copying, flashing, building, or otherwise using the Software, you agree to be bound by this Agreement. If you do not agree to these terms, do not install or use the Software.
+1. Licence Grant
+Subject to section 2, The CipherOS Project grants you a non-exclusive, worldwide, royalty free licence to install, run, study, modify, and build the Software for your own personal use, for evaluation, for testing, for security research, and for academic purposes.
+
+Code inherited from the Android Open Source Project and other upstream projects is licensed to you under its own terms, including the Apache Licence 2.0 and the GNU General Public Licence version 2. This Agreement does not reduce any right granted to you under those licences.
+2. Restriction on Commercial and Third Party Use
+You may not use the Project Code, as defined in section 1 of the legal terms above, in a commercial product, a commercial service, or any other distributed project without prior written permission signed by no fewer than two Directors of The CipherOS Project.
+
+Permission is granted in writing, is specific to the use described in the request, and may be made subject to conditions. Requests should be sent to legal@cipheros.org.in.
+3. Trademarks
+This Agreement grants no right to use the CipherOS name, logo, application names, or design identity. Use of those marks requires separate written permission as set out in section 4 of the legal terms above.
+4. Termination
+This Agreement is effective until terminated. You may terminate it at any time by destroying all copies of the Software in your possession. It terminates automatically if you fail to comply with any of its terms. On termination you must cease use of, and destroy all copies of, the Software, save for any rights that continue under an applicable upstream open source licence.
+5. Disclaimer of Warranty
+THE SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND. THE CIPHEROS PROJECT DISCLAIMS ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+6. Limitation of Liability
+TO THE MAXIMUM EXTENT PERMITTED BY LAW, THE CIPHEROS PROJECT SHALL NOT BE LIABLE FOR ANY DAMAGES, WHETHER DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL, ARISING OUT OF THE USE OR INABILITY TO USE THE SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+7. Entire Agreement
+This Agreement, together with the legal terms set out above, constitutes the entire agreement between you and The CipherOS Project relating to the Software, and supersedes any prior agreement, whether oral or written.
+8. Waiver
+No waiver of any term or condition shall be deemed a continuing waiver. A failure to enforce any provision does not constitute a waiver of future enforcement of that provision or of any other provision.
+9. Severability
+If any provision of this Agreement is found to be invalid or unenforceable, that provision shall be enforced to the maximum extent permissible and the remaining provisions shall remain in full force and effect.
+© 2019 – 2026 The CipherOS Project. All Rights Reserved.

@@ -1,0 +1,20 @@
+# OpenBrush
+# Copyright © 2019 – 2026 The CipherOS Project (https://cipheros.org.in)
+# Author: Aryan Sinha <techyminati>
+# Licensed under the CipherOS License 2.0. See LICENSE for the full terms.
+
+# Rust build output
+/target/
+
+# Snapshot test diffs (only the reference images are committed)
+**/tests/snapshots/*.diff.png
+**/tests/snapshots/*.new.png
+**/tests/snapshots/*.old.png
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.log
+.vscode/*
+!.vscode/extensions.json
+.idea/

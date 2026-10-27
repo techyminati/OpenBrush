@@ -1,0 +1,38 @@
+# OpenBrush
+# Copyright © 2019 – 2026 The CipherOS Project (https://cipheros.org.in)
+# Author: Aryan Sinha <techyminati>
+# Licensed under the CipherOS License 2.0. See LICENSE for the full terms.
+
+[package]
+name = "openbrush"
+version = "0.1.0"
+edition = "2024"
+description = "A cross-platform paint program modelled on Windows 11 Paint, by The CipherOS Project"
+authors = ["Aryan Sinha <techyminati>"]
+license-file = "LICENSE"
+repository = "https://github.com/techyminati/openbrush"
+homepage = "https://cipheros.org.in"
+readme = "README.md"
+keywords = ["paint", "drawing", "image-editor", "egui"]
+categories = ["graphics", "multimedia::images"]
+
+[dependencies]
+eframe = "0.37"
+egui = "0.37"
+egui_extras = { version = "0.37", features = ["svg"] }
+tiny-skia = "0.12"
+image = "0.25"
+rfd = "0.17"
+arboard = "3.7"
+cosmic-text = "0.19"
+
+[profile.dev]
+opt-level = 1
+
+[profile.dev.package."*"]
+opt-level = 3
+
+[profile.release]
+lto = "thin"
+codegen-units = 1
+strip = true
