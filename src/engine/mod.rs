@@ -14,3 +14,4 @@ pub mod fill;
 pub mod transform;
 pub mod brush;
 pub mod shapes;
+pub mod io;

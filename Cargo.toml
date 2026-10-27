@@ -21,7 +21,7 @@ eframe = "0.37"
 egui = "0.37"
 egui_extras = { version = "0.37", features = ["svg"] }
 tiny-skia = "0.12"
-image = "0.25"
+image = { version = "0.25", default-features = false, features = ["rayon", "png", "jpeg", "bmp", "gif", "tiff", "webp", "ico"] }
 rfd = "0.17"
 arboard = "3.7"
 cosmic-text = "0.19"
