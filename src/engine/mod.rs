@@ -16,3 +16,4 @@ pub mod brush;
 pub mod shapes;
 pub mod io;
 pub mod selection;
+pub mod text;
