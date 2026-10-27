@@ -17,7 +17,7 @@ keywords = ["paint", "drawing", "image-editor", "egui"]
 categories = ["graphics", "multimedia::images"]
 
 [dependencies]
-eframe = "0.37"
+eframe = { version = "0.37", features = ["persistence"] }
 egui = "0.37"
 egui_extras = { version = "0.37", features = ["svg"] }
 tiny-skia = "0.12"
@@ -25,6 +25,9 @@ image = { version = "0.25", default-features = false, features = ["rayon", "png"
 rfd = "0.17"
 arboard = "3.7"
 cosmic-text = "0.19"
+
+[dev-dependencies]
+egui_kittest = { version = "0.37", features = ["wgpu", "snapshot", "eframe"] }
 
 [profile.dev]
 opt-level = 1

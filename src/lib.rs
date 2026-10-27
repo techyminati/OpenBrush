@@ -5,5 +5,8 @@
 
 //! OpenBrush: a cross-platform paint program modelled on Windows 11 Paint.
 
+pub mod app;
 pub mod engine;
 pub mod ui;
+
+pub use app::PaintApp;
