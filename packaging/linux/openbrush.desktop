@@ -1,0 +1,15 @@
+# OpenBrush
+# Copyright © 2019 – 2026 The CipherOS Project (https://cipheros.org.in)
+# Author: Aryan Sinha <techyminati>
+# Licensed under the CipherOS License 2.0. See LICENSE for the full terms.
+[Desktop Entry]
+Type=Application
+Name=OpenBrush
+GenericName=Paint
+Comment=Draw and edit pictures
+Exec=openbrush %f
+Icon=openbrush
+Terminal=false
+Categories=Graphics;2DGraphics;RasterGraphics;
+MimeType=image/png;image/jpeg;image/bmp;image/gif;image/tiff;image/webp;image/x-icon;
+StartupWMClass=openbrush

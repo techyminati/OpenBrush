@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  OpenBrush
+  Copyright © 2019 – 2026 The CipherOS Project (https://cipheros.org.in)
+  Author: Aryan Sinha <techyminati>
+  Licensed under the CipherOS License 2.0. See LICENSE for the full terms.
+-->
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleName</key>
+    <string>OpenBrush</string>
+    <key>CFBundleDisplayName</key>
+    <string>OpenBrush</string>
+    <key>CFBundleIdentifier</key>
+    <string>in.org.cipheros.openbrush</string>
+    <key>CFBundleExecutable</key>
+    <string>openbrush</string>
+    <key>CFBundleIconFile</key>
+    <string>OpenBrush</string>
+    <key>CFBundlePackageType</key>
+    <string>APPL</string>
+    <key>CFBundleShortVersionString</key>
+    <string>@VERSION@</string>
+    <key>CFBundleVersion</key>
+    <string>@VERSION@</string>
+    <key>LSApplicationCategoryType</key>
+    <string>public.app-category.graphics-design</string>
+    <key>LSMinimumSystemVersion</key>
+    <string>11.0</string>
+    <key>NSHighResolutionCapable</key>
+    <true/>
+    <key>NSHumanReadableCopyright</key>
+    <string>© 2019 – 2026 The CipherOS Project. All Rights Reserved.</string>
+</dict>
+</plist>
