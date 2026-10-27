@@ -12,3 +12,4 @@ pub mod raster;
 pub mod history;
 pub mod fill;
 pub mod transform;
+pub mod brush;
