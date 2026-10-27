@@ -156,7 +156,15 @@ impl<'a> MenuItem<'a> {
     }
 
     pub fn show(self, ui: &mut Ui) -> Response {
-        let width = ui.available_width().max(240.0);
+        // As wide as the content needs, and at least as wide as the menu (set by its min width).
+        let measure = |text: &str, font: egui::FontId| ui.painter().layout_no_wrap(text.to_owned(), font, Color32::PLACEHOLDER).size().x;
+        let needed = 12.0
+            + if self.checked.is_some() { 26.0 } else { 0.0 }
+            + 30.0
+            + measure(self.label, theme::body())
+            + self.shortcut.map_or(0.0, |s| 32.0 + measure(s, theme::caption()))
+            + if self.submenu { 32.0 } else { 16.0 };
+        let width = needed.max(ui.min_rect().width()).max(160.0);
         let sense = if self.enabled { Sense::click() } else { Sense::hover() };
         let (rect, response) = ui.allocate_exact_size(vec2(width, 34.0), sense);
         let p = Palette::of(ui.ctx());
@@ -210,7 +218,7 @@ impl<'a> MenuItem<'a> {
 }
 
 pub fn menu_separator(ui: &mut Ui) {
-    let (rect, _) = ui.allocate_exact_size(vec2(ui.available_width(), 9.0), Sense::hover());
+    let (rect, _) = ui.allocate_exact_size(vec2(ui.min_rect().width().max(160.0), 9.0), Sense::hover());
     let p = Palette::of(ui.ctx());
     ui.painter().hline(rect.x_range().shrink(2.0), rect.center().y, Stroke::new(1.0, p.divider));
 }
