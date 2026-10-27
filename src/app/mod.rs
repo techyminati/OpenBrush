@@ -26,7 +26,7 @@ use std::time::SystemTime;
 use egui::{Frame, Margin};
 use tiny_skia::{IntRect, Pixmap, PixmapPaint};
 
-pub use commands::Command;
+pub use commands::{Command, cmd as commands_shortcut};
 pub use state::{ColorSlot, SelectMode, Sizes, Tool, View};
 
 use crate::engine::brush::BrushKind;
@@ -234,6 +234,23 @@ impl PaintApp {
             last_title: String::new(),
             seed: 1,
         }
+    }
+
+    /// Screen position of the centre of document pixel `(x, y)`, as of the last frame.
+    pub fn doc_to_screen(&self, x: f32, y: f32) -> egui::Pos2 {
+        let origin = self.canvas_origin(self.viewport);
+        self.to_screen(tiny_skia::Point::from_xy(x + 0.5, y + 0.5), origin)
+    }
+
+    /// The colour of a pixel as shown on screen (all visible layers and live edits).
+    pub fn pixel(&self, x: i32, y: i32) -> Option<Rgba> {
+        let r = IntRect::from_xywh(x, y, 1, 1)?;
+        raster::clamp_to(r, self.doc.width(), self.doc.height())?;
+        raster::get_pixel(&self.compose(r), 0, 0)
+    }
+
+    pub fn has_dialog(&self) -> bool {
+        self.dialog.is_some()
     }
 
     pub fn is_dirty(&self) -> bool {
